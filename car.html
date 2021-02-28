@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Car Racing</title>
+        <script src="car.js"></script>
+        <style>
+            body{
+                text-align: center;
+                background-image: url("BackGround.jpg");
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            h1{
+                color: aliceblue;
+            }
+            p{
+                color: red;
+                font-size: 20;
+            }
+        </style>
+    </head>
+    <body onload="add()">
+        <h1>Car Racing Game</h1>
+        <h1>Game Status <span id="status"></span></h1>
+        <canvas height="600" width="800" id="myCanvas"></canvas>
+        <br>
+        <br>
+       <p><b class = "test-warning">NOTE:</b> IF CAR DOES NOT APPEAR, PRESS ONE OF THE ARROW KEYS, OR PRESS WASD</p>
+    </body>
+    <script>
+        canvas = document.getElementById('myCanvas');
+ctx = canvas.getContext("2d");
+
+car1_width = "120";
+car1_height = "70";
+car1_image = "car1.png";
+car1_x = 10;
+car1_y = 10;
+
+car2_width = "120";
+car2_height = "70";
+car2_image = "car2.png";
+car2_x = 10;
+car2_y = 100;
+
+background = "canvasbg.jpg";
+
+function add(){
+    background_imgTag = new Image();
+    background_imgTag.onload = BgUpload;
+    background_imgTag.src = background;
+
+    car1_imgTag = new Image();
+    car1_imgTag.onload = Car1Upload;
+    car1_imgTag.src = car1_image;
+
+    car2_imgTag = new Image();
+    car2_imgTag.onload = Car2Upload;
+    car2_imgTag.src = car2_image;
+}
+
+function BgUpload(){
+    ctx.drawImage(background_imgTag, 0, 0, canvas.width, canvas.height);
+}
+function Car1Upload(){
+    ctx.drawImage(car1_imgTag, car1_x, car1_y, car1_width, car1_height);
+}
+function Car2Upload(){
+    ctx.drawImage(car2_imgTag, car2_x, car2_y, car2_width, car2_height);
+}
+
+window.addEventListener("keydown", keydown);
+function keydown(e){
+    console.log("Keydown");
+    keypressed = e.keyCode;
+    if(keypressed == "38"){
+        car1_up()
+        console.log("hi");
+    }
+    if(keypressed == "40"){
+        car1_down()
+    }
+    if(keypressed == "37"){
+        car1_left()
+    }
+    if(keypressed == "39"){
+        car1_right()
+    }
+    if(keypressed == "87"){
+        car2_up()
+    }
+    if(keypressed == "83"){
+        car2_down()
+    }
+    if(keypressed == "65"){
+        car2_left()
+    }
+    if(keypressed == "68"){
+        car2_right()
+    }
+    if(car1_x>500){
+    document.getElementById("status").innerHTML = "Car 1 Won!";
+}
+if(car2_x>500){
+    document.getElementById("status").innerHTML = "Car 2 Won!";
+}
+}
+function car1_up(){
+    console.log("up");
+    if(car1_y>=0){
+        car1_y = car1_y - 10;
+        BgUpload();
+        Car1Upload();
+        Car2Upload();
+    }
+}
+function car1_down(){
+    if(car1_y<=500){
+        car1_y = car1_y  +10;
+        BgUpload();
+        Car1Upload();
+        Car2Upload();
+    }
+}
+function car1_left(){
+    if(car1_x>=0){
+        car1_x = car1_x - 10;
+        BgUpload();
+        Car1Upload();
+        Car2Upload();
+    }
+}
+function car1_right(){
+    if(car1_x<=500){
+        car1_x = car1_x + 10;
+        BgUpload();
+        Car1Upload();
+        Car2Upload();
+    }
+}
+function car2_up(){
+    if(car2_y>=0){
+        car2_y = car2_y - 10;
+        BgUpload();
+        Car1Upload();
+        Car2Upload();
+    }
+}
+function car2_down(){
+    if(car2_y<=500){
+        car2_y = car2_y  +10;
+        BgUpload();
+        Car1Upload();
+        Car2Upload();
+    }
+}
+function car2_left(){
+    if(car2_x>=0){
+        car2_x = car2_x - 10;
+        BgUpload();
+        Car1Upload();
+        Car2Upload();
+    }
+}
+function car2_right(){
+    if(car2_x<=500){
+        car2_x = car2_x + 10;
+        BgUpload();
+        Car1Upload();
+        Car2Upload();
+    }
+}
+
+    </script>
